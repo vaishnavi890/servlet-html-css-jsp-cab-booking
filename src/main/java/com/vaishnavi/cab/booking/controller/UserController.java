@@ -1,29 +1,26 @@
 package com.vaishnavi.cab.booking.controller;
 
-import jakarta.servlet.http.HttpServlet;
 import com.vaishnavi.cab.booking.model.User;
 import com.vaishnavi.cab.booking.service.UserService;
-
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 public class UserController extends HttpServlet {
-    private UserService service = new UserService();
+    UserService userService = new UserService();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            User user = new User();
-            user.setName(request.getParameter("name"));
-            user.setEmail(request.getParameter("email"));
-            user.setPhone(request.getParameter("phone"));
-            service.registerUser(user);
-            response.sendRedirect("jsp/registerUser.jsp?status=success");
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("jsp/registerUser.jsp?status=fail");
-        }
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        List<User> users = userService.fetchAllUsers();
+        req.getSession().setAttribute("userList", users);
+        res.sendRedirect("/display-users.jsp");
+    }
+
+    public void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        this.doGet(req, res);
+    }
+
+    public void destroy() {
+        System.out.println("Servlet destroyed...");
     }
 }

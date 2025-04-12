@@ -16,4 +16,8 @@ public class UserService {
     public List<User> listUsers() throws SQLException {
         return repo.getAllUsers();
     }
+
+    public List<User> fetchAllUsers() {
+        return List.of();
+    }
 }

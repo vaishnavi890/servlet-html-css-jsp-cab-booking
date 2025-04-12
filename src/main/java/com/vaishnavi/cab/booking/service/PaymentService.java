@@ -17,4 +17,8 @@ public class PaymentService {
     public List<Payment> getAllPayments() throws SQLException {
         return repository.getAllPayments();
     }
+
+    public List<Payment> fetchPayments() {
+        return List.of();
+    }
 }

@@ -2,53 +2,49 @@ package com.vaishnavi.cab.booking.controller;
 
 import com.vaishnavi.cab.booking.model.Rating;
 import com.vaishnavi.cab.booking.service.RatingService;
-
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/rating")
 public class RatingController extends HttpServlet {
-    private RatingService service;
+    RatingService service = new RatingService();
 
     public void init() {
-        service = new RatingService();
+        System.out.println("RatingController initialized");
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            List<Rating> ratings = service.getAllRatings();
-            request.setAttribute("ratings", ratings);
-            request.getRequestDispatcher("jsp/rating.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Rating> ratingList = service.getRatings();
+        request.getSession().setAttribute("ratingList", ratingList);
+        response.sendRedirect("/display-ratings.jsp");
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        Rating rating = new Rating();
-        rating.setRideId(Integer.parseInt(request.getParameter("rideId")));
-        rating.setUserId(Integer.parseInt(request.getParameter("userId")));
-        rating.setDriverId(Integer.parseInt(request.getParameter("driverId")));
-        rating.setRating(Integer.parseInt(request.getParameter("rating")));
-        rating.setReview(request.getParameter("review"));
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            service.addRating(rating);
-            response.sendRedirect("rating");
-        } catch (SQLException e) {
+            int rideId = Integer.parseInt(request.getParameter("rideId"));
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            int driverId = Integer.parseInt(request.getParameter("driverId"));
+            int ratingValue = Integer.parseInt(request.getParameter("rating"));
+            String review = request.getParameter("review");
+
+            Rating rating = new Rating(0, rideId, userId, driverId, ratingValue, review);
+            service.saveRating(rating);
+
+            double avg = service.calculateAverage(driverId);
+            request.getSession().setAttribute("avgRating", avg);
+            response.sendRedirect("/display-ratings.jsp");
+
+        } catch (NumberFormatException e) {
             e.printStackTrace();
+            response.sendRedirect("/error.jsp");
         }
     }
 
     public void destroy() {
-        System.out.println("RatingController destroyed.");
+        System.out.println("RatingController destroyed");
     }
-
 }
+

@@ -17,4 +17,15 @@ import java.util.List;
         public List<Rating> getAllRatings() throws SQLException {
             return repo.getAllRatings();
         }
-}
+
+        public List<Rating> getRatings() {
+            return List.of();
+        }
+
+        public void saveRating(Rating rating) {
+        }
+
+        public double calculateAverage(int driverId) {
+            return 0;
+        }
+    }

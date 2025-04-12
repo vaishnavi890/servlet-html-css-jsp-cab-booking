@@ -1,128 +1,81 @@
+/* style.css */
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f4f4f9;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
     margin: 0;
-    padding: 30px;
+    padding: 0;
+}
+
+h2, h3 {
+    text-align: center;
     color: #333;
 }
 
-/* Main Container */
-.container, .dashboard {
-    max-width: 800px;
-    margin: auto;
-    background: #fff;
-    padding: 25px 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Headings */
-h1, h2 {
-    color: #2c3e50;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Navigation Section */
-.nav-section {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #ecf3ff;
-    border-left: 5px solid #007BFF;
-    border-radius: 8px;
-}
-
-.nav-section h2 {
-    margin-top: 0;
-    color: #0056b3;
-}
-
-/* Table Styling */
 table {
-    width: 100%;
+    margin: 20px auto;
     border-collapse: collapse;
-    margin-top: 20px;
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-table th, table td {
+th, td {
+    border: 1px solid #ddd;
     padding: 10px 15px;
-    border: 1px solid #ccc;
-    text-align: left;
+    text-align: center;
 }
 
-table th {
-    background-color: #007BFF;
+th {
+    background-color: #007bff;
     color: white;
 }
 
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-/* Form Styling */
-form {
-    max-width: 600px;
-    margin: auto;
-}
-
-label {
-    display: block;
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="number"],
-select,
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-}
-
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #28a745;
-    border: none;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* Links */
 a {
     display: inline-block;
-    margin-top: 15px;
-    color: #007BFF;
+    margin: 20px auto;
+    text-align: center;
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
     text-decoration: none;
+    border-radius: 5px;
 }
 
 a:hover {
-    text-decoration: underline;
+    background-color: #218838;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .container, .dashboard {
-        padding: 20px;
-    }
-
-    table, form {
-        font-size: 14px;
-    }
-
-    button {
-        width: 100%;
-    }
+form {
+    width: 60%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
 }
 
+input[type="text"], input[type="number"], textarea {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

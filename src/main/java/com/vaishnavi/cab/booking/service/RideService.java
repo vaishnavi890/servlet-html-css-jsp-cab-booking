@@ -17,4 +17,8 @@ public class RideService {
     public List<Ride> getAllRides() throws SQLException {
         return repository.getAllRides();
     }
+
+    public List<Ride> fetchRides() {
+        return List.of();
+    }
 }

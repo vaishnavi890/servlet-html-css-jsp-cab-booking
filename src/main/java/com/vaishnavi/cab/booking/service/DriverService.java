@@ -20,4 +20,8 @@ public class DriverService {
     public void removeDriver(int id) throws SQLException {
         repo.deleteDriver(id);
     }
+
+    public List<Driver> fetchDrivers() {
+        return List.of();
+    }
 }
